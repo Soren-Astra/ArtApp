@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ArtApp</string>
+    <string name="hint_challenge">Challenge...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Challenge not saved because it is empty.</string>
+    <string name="add_word">Add challenge</string>
 </resources>
