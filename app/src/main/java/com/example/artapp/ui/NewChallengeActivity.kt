@@ -1,37 +1,60 @@
 package com.example.artapp.ui
 
-import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
-import com.example.artapp.R
+import android.view.View
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.artapp.ArtApplication
+import com.example.artapp.databinding.ActivityNewChallengeBinding
+import com.example.artapp.model.Challenge
+import com.example.artapp.model.Prompt
+import com.example.artapp.ui.adapters.PromptAddListAdapter
+import com.example.artapp.viewmodel.NewChallengeViewModel
+import com.example.artapp.viewmodel.NewChallengeViewModelFactory
 
-class NewChallengeActivity : Activity() {
-    private lateinit var editChallengeView: EditText
+class NewChallengeActivity : ComponentActivity() {
+    private lateinit var _binding: ActivityNewChallengeBinding
+    private lateinit var addPromptAdapter: PromptAddListAdapter
+    private var promptList: MutableList<Prompt> = mutableListOf()
+
+    private val newChallengeViewModel: NewChallengeViewModel by viewModels {
+        NewChallengeViewModelFactory(
+            (application as ArtApplication).challengeRepository,
+            (application as ArtApplication).promptRepository)
+    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_challenge)
-        editChallengeView = findViewById<EditText>(R.id.edit_challenge)
+        _binding = ActivityNewChallengeBinding.inflate(layoutInflater)
+        setContentView(_binding.root)
+        addPromptAdapter = PromptAddListAdapter()
 
-        val button = findViewById<Button>(R.id.button_save)
-        button.setOnClickListener {
-            val replyIntent = Intent()
-            if (TextUtils.isEmpty(editChallengeView.text)) {
-                setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                val challenge = editChallengeView.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, challenge)
-                setResult(Activity.RESULT_OK, replyIntent)
-            }
-            finish()
-        }
+        _binding.recyclerPromptadd.adapter = addPromptAdapter
+        _binding.recyclerPromptadd.layoutManager = LinearLayoutManager(this)
+        registerListeners()
+
     }
 
-    companion object {
-        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+    private fun registerListeners() {
+        _binding.buttonSave.setOnClickListener {
+            _binding.progressBar.visibility = View.VISIBLE
+            val challenge = Challenge(
+                _binding.editName.text.toString(),
+                _binding.editDescription.text.toString()
+            )
+            newChallengeViewModel.insert(challenge, addPromptAdapter.currentList.toMutableList())
+            finish()
+        }
+        _binding.buttonCancel.setOnClickListener {
+            finish()
+        }
+        _binding.buttonAddprompt.setOnClickListener {
+            promptList = addPromptAdapter.currentList.toMutableList()
+            promptList.add(Prompt(_binding.editAddprompt.text.toString(), "", 0))
+            addPromptAdapter.submitList(promptList)
+            addPromptAdapter.notifyItemInserted(promptList.size - 1)
+            _binding.editAddprompt.setText("")
+        }
     }
 }

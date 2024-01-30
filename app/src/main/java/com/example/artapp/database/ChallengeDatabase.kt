@@ -6,13 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.artapp.model.Challenge
+import com.example.artapp.model.Prompt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Challenge::class], version = 1, exportSchema = false)
+@Database(entities = [Challenge::class, Prompt::class], version = 2, exportSchema = false)
 public abstract class ChallengeDatabase : RoomDatabase() {
 
     abstract fun challengeDao() : ChallengeDao
+    abstract fun promptDao() : PromptDao
 
     companion object {
         @Volatile
@@ -46,12 +48,6 @@ public abstract class ChallengeDatabase : RoomDatabase() {
         suspend fun populateDatabase(challengeDao: ChallengeDao) {
             // Delete all content here.
             challengeDao.deleteAll()
-
-            // Add sample words.
-            var challenge = Challenge("Test")
-            challengeDao.insert(challenge)
-            challenge = Challenge("Test 2")
-            challengeDao.insert(challenge)
         }
     }
 }

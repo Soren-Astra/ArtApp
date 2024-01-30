@@ -12,8 +12,11 @@ interface ChallengeDao {
     @Query("SELECT * FROM challenge ORDER BY title ASC")
     fun getAlphabetizedChallenges(): Flow<List<Challenge>>
 
+    @Query("SELECT * FROM challenge WHERE id = :id")
+    suspend fun findById(id: Int): Challenge
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(challenge: Challenge)
+    suspend fun insert(challenge: Challenge): Long
 
     @Query("DELETE FROM challenge")
     suspend fun deleteAll()

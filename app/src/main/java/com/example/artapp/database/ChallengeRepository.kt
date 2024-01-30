@@ -10,7 +10,12 @@ class ChallengeRepository(private val challengeDao: ChallengeDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(challenge: Challenge) {
-        challengeDao.insert(challenge)
+    suspend fun insert(challenge: Challenge): Int {
+        return challengeDao.insert(challenge).toInt()
+    }
+
+    @WorkerThread
+    suspend fun findById(id: Int): Challenge {
+        return challengeDao.findById(id)
     }
 }

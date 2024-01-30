@@ -14,9 +14,12 @@
         android:theme="@style/Theme.ArtApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ChallengeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.NewChallengeActivity"
             android:exported="false"
-            android:theme="@style/Theme.ArtApp"/>
+            android:theme="@style/Theme.ArtApp" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

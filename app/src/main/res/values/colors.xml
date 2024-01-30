@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="buttonLabel">#FFFFFF</color>
+    <color name="peach_yellow">#FFFCDE9C</color>
+    <color name="sandy_brown">#FFFFA552</color>
+    <color name="burnt_orange">#FFBA5624</color>
+    <color name="dark_purple">#FF381D2A</color>
+    <color name="tea_green">#FFC4D6B0</color>
 </resources>
