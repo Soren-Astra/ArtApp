@@ -2,8 +2,10 @@ package com.example.artapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +16,7 @@ import com.example.artapp.viewmodel.ChallengeListViewModel
 import com.example.artapp.viewmodel.ChallengeListViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private val challengeViewModel: ChallengeListViewModel by viewModels {
         ChallengeListViewModelFactory((application as ArtApplication).challengeRepository)
     }
@@ -37,5 +39,11 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this@MainActivity, NewChallengeActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
     }
 }

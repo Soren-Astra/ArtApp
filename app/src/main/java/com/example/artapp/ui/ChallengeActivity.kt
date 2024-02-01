@@ -1,18 +1,21 @@
 package com.example.artapp.ui
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artapp.ArtApplication
+import com.example.artapp.R
 import com.example.artapp.databinding.ActivityChallengeBinding
 import com.example.artapp.model.Challenge
 import com.example.artapp.ui.adapters.PromptDisplayListAdapter
 import com.example.artapp.viewmodel.ChallengeViewModel
 import com.example.artapp.viewmodel.ChallengeViewModelFactory
 
-class ChallengeActivity : ComponentActivity() {
+class ChallengeActivity : AppCompatActivity() {
     private var _challengeId: Int = 0
     private lateinit var _binding: ActivityChallengeBinding
     private lateinit var currentChallenge: Challenge
@@ -27,6 +30,7 @@ class ChallengeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityChallengeBinding.inflate(layoutInflater)
+
         setContentView(_binding.root)
         promptListAdapter = PromptDisplayListAdapter()
         _challengeId = intent.getIntExtra("challenge_id", 0)
@@ -43,5 +47,11 @@ class ChallengeActivity : ComponentActivity() {
         challengeViewModel.challengePrompts.observe(this, Observer { prompts ->
             promptListAdapter.submitList(prompts)
         })
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        title = currentChallenge.title
+        return true
     }
 }

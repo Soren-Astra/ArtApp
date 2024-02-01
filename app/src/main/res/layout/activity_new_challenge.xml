@@ -40,7 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-light"
                 android:hint="@string/hint_name"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -53,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
+                android:gravity="bottom"
                 android:hint="@string/hint_description"
                 android:importantForAutofill="no"
                 android:inputType="text|textMultiLine"
@@ -87,14 +87,13 @@
 
                 <ImageButton
                     android:id="@+id/button_addprompt"
-                    style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/peach_yellow"
                     android:contentDescription="Add prompt"
                     android:minHeight="@dimen/min_height"
-                    android:src="@drawable/round_add_24" />
+                    android:src="@drawable/round_add_24_dark"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

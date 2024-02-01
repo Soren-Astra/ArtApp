@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">ArtApp</string>
+    <string name="challenges">Challenges</string>
+    <string name="new_challenge">New Challenge</string>
     <string name="hint_name">Name</string>
     <string name="hint_description">Description</string>
     <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>
-    <string name="button_addprompts">Prompts...</string>
+    <string name="button_addprompts">Prompts…</string>
     <string name="empty_not_saved">Challenge not saved because it is empty.</string>
     <string name="add_word">Add challenge</string>
     <string name="placeholder">Placeholder text</string>
