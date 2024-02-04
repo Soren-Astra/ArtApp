@@ -9,6 +9,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/peach_yellow"
+        android:background="@drawable/box_rounded"
+        android:backgroundTint="@color/peach_yellow"
+        android:drawableStart="@drawable/icon_brus_smallh"
+        android:padding="8dp"
+        android:text="@string/placeholder"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 </LinearLayout>

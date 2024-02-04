@@ -10,4 +10,13 @@
     <string name="empty_not_saved">Challenge not saved because it is empty.</string>
     <string name="add_word">Add challenge</string>
     <string name="placeholder">Placeholder text</string>
+    <string name="dialog_import_title">Import</string>
+    <string name="dialog_import_positive">Import</string>
+    <string name="dialog_import_negative">Cancel</string>
+    <string name="dialog_import_file">File</string>
+    <string name="dialog_import_string">Text</string>
+    <string name="dialog_import_mode">Mode</string>
+    <string name="import_mode_add">Add</string>
+    <string name="import_mode_replace_duplicate">Replace duplicates</string>
+    <string name="import_mode_full_replace">Replace all</string>
 </resources>

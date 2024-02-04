@@ -18,4 +18,19 @@ class ChallengeRepository(private val challengeDao: ChallengeDao) {
     suspend fun findById(id: Int): Challenge {
         return challengeDao.findById(id)
     }
+
+    @WorkerThread
+    suspend fun getIdForTitle(title: String): List<Long> {
+        return challengeDao.getIdForTitle(title)
+    }
+
+    @WorkerThread
+    suspend fun deleteAll() {
+        challengeDao.deleteAll()
+    }
+
+    @WorkerThread
+    suspend fun deleteFromTitle(title: String) {
+        challengeDao.deleteFromTitle(title)
+    }
 }

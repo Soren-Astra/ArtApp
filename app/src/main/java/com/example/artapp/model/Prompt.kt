@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "prompt")
 data class Prompt(
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "challenge_id") var challengeId: Int,
-    @ColumnInfo(name = "is_done") val isDone: Boolean = false
+    @ColumnInfo(name = "is_done") var isDone: Boolean = false
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }

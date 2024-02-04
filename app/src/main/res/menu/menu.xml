@@ -3,7 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/import_json"
         android:title="Import"
-        android:icon="@drawable/baseline_download_24"
+        android:icon="@drawable/icon_download"
         app:showAsAction="ifRoom"
         android:iconTint="@color/white"/>
 </menu>

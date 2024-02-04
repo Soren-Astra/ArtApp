@@ -14,4 +14,15 @@ class PromptRepository(private val promptDao: PromptDao) {
     {
         return promptDao.getByChallenge(challengeId)
     }
+
+    @WorkerThread
+    suspend fun deleteAll() {
+        promptDao.deleteAll()
+    }
+
+    @WorkerThread
+    suspend fun deleteFromChallenge(challengeId: Int)
+    {
+        promptDao.deleteFromChallenge(challengeId)
+    }
 }

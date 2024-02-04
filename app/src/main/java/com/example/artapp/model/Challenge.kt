@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "challenge")
 data class Challenge(
-    @ColumnInfo(name = "title") val title: String = "",
-    @ColumnInfo(name = "description") val description: String = ""
+    @ColumnInfo(name = "title") var title: String = "",
+    @ColumnInfo(name = "description") var description: String = ""
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }

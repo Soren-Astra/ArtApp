@@ -23,4 +23,7 @@ interface PromptDao {
 
     @Query("DELETE FROM prompt")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM prompt WHERE challenge_id = :challengeId")
+    suspend fun deleteFromChallenge(challengeId: Int)
 }

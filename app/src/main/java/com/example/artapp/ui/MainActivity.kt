@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -17,9 +18,10 @@ import com.example.artapp.viewmodel.ChallengeListViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
-    private val challengeViewModel: ChallengeListViewModel by viewModels {
-        ChallengeListViewModelFactory((application as ArtApplication).challengeRepository)
+    private val challengeListViewModel: ChallengeListViewModel by viewModels {
+        ChallengeListViewModelFactory((application as ArtApplication).challengeRepository, (application as ArtApplication).promptRepository)
     }
+    private lateinit var _dialog: ImportDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +30,12 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         val adapter = ChallengeListAdapter()
+        _dialog = ImportDialogFragment(challengeListViewModel)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        challengeViewModel.allChallenges.observe(this, Observer { challenges ->
+        challengeListViewModel.allChallenges.observe(this, Observer { challenges ->
             challenges?.let { adapter.submitList(it)}
         })
         fab.setOnClickListener {
@@ -46,4 +49,15 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu, menu)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.import_json -> {
+                _dialog.show(supportFragmentManager, "IMPORT_DIALOG")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="import_modes">
+        <item>@string/import_mode_add</item>
+        <item>@string/import_mode_replace_duplicate</item>
+        <item>@string/import_mode_full_replace</item>
+    </array>
+</resources>

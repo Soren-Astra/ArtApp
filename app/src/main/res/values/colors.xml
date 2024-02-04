@@ -13,4 +13,5 @@
     <color name="burnt_orange">#FFBA5624</color>
     <color name="dark_purple">#FF381D2A</color>
     <color name="tea_green">#FFC4D6B0</color>
+    <color name="transparent">#00000000</color>
 </resources>
