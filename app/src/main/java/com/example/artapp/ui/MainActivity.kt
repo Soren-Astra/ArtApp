@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.ArtApplication
 import com.example.artapp.R
 import com.example.artapp.ui.adapters.ChallengeListAdapter
+import com.example.artapp.ui.fragments.ImportDialogFragment
 import com.example.artapp.viewmodel.ChallengeListViewModel
 import com.example.artapp.viewmodel.ChallengeListViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         val adapter = ChallengeListAdapter()
         _dialog = ImportDialogFragment(challengeListViewModel)
+        challengeListViewModel.loadChallenges()
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -42,6 +44,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, NewChallengeActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        challengeListViewModel.loadChallenges()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

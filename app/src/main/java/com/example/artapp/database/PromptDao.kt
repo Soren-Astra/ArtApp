@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.artapp.entities.Prompt
 import kotlinx.coroutines.flow.Flow
 
@@ -20,6 +21,9 @@ interface PromptDao {
 
     @Query("SELECT * FROM prompt WHERE challenge_id = :challengeId")
     suspend fun getByChallenge(challengeId: Int): List<Prompt>
+
+    @Update
+    suspend fun updatePrompt(prompt: Prompt)
 
     @Query("DELETE FROM prompt")
     suspend fun deleteAll()

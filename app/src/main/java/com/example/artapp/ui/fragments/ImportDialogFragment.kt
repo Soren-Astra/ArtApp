@@ -1,4 +1,4 @@
-package com.example.artapp.ui
+package com.example.artapp.ui.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog

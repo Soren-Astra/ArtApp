@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class ChallengeRepository(private val challengeDao: ChallengeDao) {
 
-    val allChallenges: Flow<List<Challenge>> = challengeDao.getAlphabetizedChallenges()
+    val allChallenges: Flow<MutableList<Challenge>> = challengeDao.getAlphabetizedChallenges()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

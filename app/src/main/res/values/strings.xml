@@ -10,6 +10,7 @@
     <string name="empty_not_saved">Challenge not saved because it is empty.</string>
     <string name="add_word">Add challenge</string>
     <string name="placeholder">Placeholder text</string>
+    <string name="placeholder_numbers">10/10</string>
     <string name="dialog_import_title">Import</string>
     <string name="dialog_import_positive">Import</string>
     <string name="dialog_import_negative">Cancel</string>

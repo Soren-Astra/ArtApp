@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -23,17 +24,25 @@ class ChallengeListAdapter : ListAdapter<Challenge, ChallengeListAdapter.Challen
 
     override fun onBindViewHolder(holder: ChallengeViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.title, current.id)
+        holder.bind(current)
     }
 
     class ChallengeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val challengeItemView: TextView = itemView.findViewById(R.id.textView)
+        private val challengeTextView: TextView = itemView.findViewById(R.id.challengelist_name)
+        private val challengeCounterView: TextView = itemView.findViewById(R.id.challengelist_completion)
+        private val challengeBarView: ProgressBar = itemView.findViewById(R.id.challengelist_bar)
 
-        fun bind(text: String?, id: Int) {
-            challengeItemView.text = text
+        fun bind(challenge: Challenge) {
+            challengeTextView.text = challenge.title
+            challengeCounterView.text = "${challenge.completedPromptCount}/${challenge.promptCount}"
+
+            if (challenge.promptCount == 0)
+                challengeBarView.progress = 100
+            else
+                challengeBarView.progress = ((challenge.completedPromptCount.toDouble() / challenge.promptCount) * 100).toInt()
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChallengeActivity::class.java)
-                intent.putExtra("challenge_id", id)
+                intent.putExtra("challenge_id", challenge.id)
                 startActivity(itemView.context, intent, null)
             }
         }

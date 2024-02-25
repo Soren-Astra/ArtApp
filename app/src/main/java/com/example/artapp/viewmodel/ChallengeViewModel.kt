@@ -21,6 +21,15 @@ class ChallengeViewModel(private val challengeRepository: ChallengeRepository, p
         currentChallenge.value = challengeRepository.findById(challengeId)
         challengePrompts.value = promptRepository.getByChallenge(challengeId)
     }
+
+    fun togglePromptCompletion(promptId: Int) = viewModelScope.launch {
+        val prompt = challengePrompts.value?.find { it.id == promptId }
+        if (prompt != null)
+        {
+            prompt.isDone = !prompt.isDone
+            promptRepository.updatePrompt(prompt)
+        }
+    }
 }
 
 class ChallengeViewModelFactory(private val challengeRepository: ChallengeRepository, private val promptRepository: PromptRepository) : ViewModelProvider.Factory {

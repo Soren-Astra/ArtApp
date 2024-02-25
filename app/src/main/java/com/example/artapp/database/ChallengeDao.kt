@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ChallengeDao {
     @Query("SELECT * FROM challenge ORDER BY title ASC")
-    fun getAlphabetizedChallenges(): Flow<List<Challenge>>
+    fun getAlphabetizedChallenges(): Flow<MutableList<Challenge>>
 
     @Query("SELECT * FROM challenge WHERE id = :id")
     suspend fun findById(id: Int): Challenge

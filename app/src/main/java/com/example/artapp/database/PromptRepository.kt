@@ -16,6 +16,12 @@ class PromptRepository(private val promptDao: PromptDao) {
     }
 
     @WorkerThread
+    suspend fun updatePrompt(prompt: Prompt)
+    {
+        promptDao.updatePrompt(prompt)
+    }
+
+    @WorkerThread
     suspend fun deleteAll() {
         promptDao.deleteAll()
     }

@@ -1,15 +1,15 @@
 package com.example.artapp.viewmodel
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.artapp.database.ChallengeRepository
 import com.example.artapp.database.PromptRepository
 import com.example.artapp.entities.Challenge
 import com.example.artapp.entities.Prompt
 import com.example.artapp.models.ChallengeData
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import java.lang.IllegalArgumentException
@@ -18,7 +18,20 @@ class ChallengeListViewModel(
     private val challengeRepository: ChallengeRepository,
     private val promptRepository: PromptRepository) : ViewModel() {
 
-    val allChallenges: LiveData<List<Challenge>> = challengeRepository.allChallenges.asLiveData()
+    val allChallenges: MutableLiveData<MutableList<Challenge>> by lazy { MutableLiveData<MutableList<Challenge>>() }
+
+    fun loadChallenges() = viewModelScope.launch {
+        val challenges = challengeRepository.allChallenges.stateIn(viewModelScope).value
+        if (challenges != null) {
+            for (challenge in challenges)
+            {
+                val prompts = promptRepository.getByChallenge(challenge.id)
+                challenge.promptCount = prompts.size
+                challenge.completedPromptCount = prompts.count { it.isDone }
+            }
+        }
+        allChallenges.value = challenges
+    }
 
     fun import(list: String, replaceExisting: Boolean = false) = viewModelScope.launch {
         val objList = Json.decodeFromString<List<ChallengeData>>(list)

@@ -4,18 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.R
 import com.example.artapp.entities.Prompt
 
-class PromptDisplayListAdapter: ListAdapter<Prompt, PromptDisplayListAdapter.PromptDisplayViewHolder>(
+class PromptDisplayListAdapter(private val toggleCallback: (Int) -> Unit): ListAdapter<Prompt, PromptDisplayListAdapter.PromptDisplayViewHolder>(
     PromptDisplayComparator()
 ) {
     override fun onBindViewHolder(holder: PromptDisplayViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.title)
+        holder.bind(current, toggleCallback)
     }
 
     override fun onCreateViewHolder(
@@ -27,9 +29,24 @@ class PromptDisplayListAdapter: ListAdapter<Prompt, PromptDisplayListAdapter.Pro
 
     class PromptDisplayViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val promptNameView: TextView = itemView.findViewById(R.id.promptlist_name)
+        private val promptCardView: CardView = itemView.findViewById(R.id.promptlist_card)
 
-        fun bind(text: String) {
-            promptNameView.text = text
+        fun bind(prompt: Prompt, toggleCallback: (Int) -> Unit) {
+            promptNameView.text = prompt.title
+            promptCardView.setOnClickListener {
+                toggleCallback(prompt.id)
+                setCardColor(prompt.isDone)
+            }
+            setCardColor(prompt.isDone)
+        }
+
+        private fun setCardColor(isPromptDone: Boolean)
+        {
+            when(isPromptDone)
+            {
+                true -> promptCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sandy_brown))
+                false -> promptCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.light_gray))
+            }
         }
 
         companion object {
