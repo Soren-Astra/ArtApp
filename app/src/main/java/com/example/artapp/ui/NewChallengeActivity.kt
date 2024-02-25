@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artapp.ArtApplication
 import com.example.artapp.databinding.ActivityNewChallengeBinding
-import com.example.artapp.model.Challenge
-import com.example.artapp.model.Prompt
+import com.example.artapp.entities.Challenge
+import com.example.artapp.entities.Prompt
 import com.example.artapp.ui.adapters.PromptAddListAdapter
 import com.example.artapp.viewmodel.NewChallengeViewModel
 import com.example.artapp.viewmodel.NewChallengeViewModelFactory

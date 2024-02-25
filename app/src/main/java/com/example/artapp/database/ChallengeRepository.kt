@@ -1,7 +1,7 @@
 package com.example.artapp.database
 
 import androidx.annotation.WorkerThread
-import com.example.artapp.model.Challenge
+import com.example.artapp.entities.Challenge
 import kotlinx.coroutines.flow.Flow
 
 class ChallengeRepository(private val challengeDao: ChallengeDao) {

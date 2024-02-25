@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.R
-import com.example.artapp.model.Challenge
+import com.example.artapp.entities.Challenge
 import com.example.artapp.ui.ChallengeActivity
 
 class ChallengeListAdapter : ListAdapter<Challenge, ChallengeListAdapter.ChallengeViewHolder>(

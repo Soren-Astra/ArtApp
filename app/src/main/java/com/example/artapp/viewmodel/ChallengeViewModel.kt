@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.artapp.database.ChallengeRepository
 import com.example.artapp.database.PromptRepository
-import com.example.artapp.model.Challenge
-import com.example.artapp.model.Prompt
+import com.example.artapp.entities.Challenge
+import com.example.artapp.entities.Prompt
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 

@@ -1,7 +1,7 @@
 package com.example.artapp.database
 
 import androidx.annotation.WorkerThread
-import com.example.artapp.model.Prompt
+import com.example.artapp.entities.Prompt
 
 class PromptRepository(private val promptDao: PromptDao) {
     @WorkerThread

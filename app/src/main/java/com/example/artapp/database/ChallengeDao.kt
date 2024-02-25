@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.artapp.model.Challenge
+import com.example.artapp.entities.Challenge
 import kotlinx.coroutines.flow.Flow
 
 @Dao

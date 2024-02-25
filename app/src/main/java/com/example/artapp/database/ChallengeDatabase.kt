@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.artapp.model.Challenge
-import com.example.artapp.model.Prompt
+import com.example.artapp.entities.Challenge
+import com.example.artapp.entities.Prompt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

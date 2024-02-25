@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.R
-import com.example.artapp.model.Prompt
+import com.example.artapp.entities.Prompt
 
 class PromptAddListAdapter(): ListAdapter<Prompt, PromptAddListAdapter.PromptAddViewHolder>(
     PromptAddComparator()

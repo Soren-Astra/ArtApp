@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artapp.ArtApplication
 import com.example.artapp.R
 import com.example.artapp.databinding.ActivityChallengeBinding
-import com.example.artapp.model.Challenge
+import com.example.artapp.entities.Challenge
 import com.example.artapp.ui.adapters.PromptDisplayListAdapter
 import com.example.artapp.viewmodel.ChallengeViewModel
 import com.example.artapp.viewmodel.ChallengeViewModelFactory
