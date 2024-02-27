@@ -1,14 +1,10 @@
 package com.example.artapp.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.artapp.ArtApplication
-import com.example.artapp.R
 import com.example.artapp.databinding.ActivityChallengeBinding
 import com.example.artapp.entities.Challenge
 import com.example.artapp.ui.adapters.PromptDisplayListAdapter
@@ -36,23 +32,17 @@ class ChallengeActivity : AppCompatActivity() {
         _challengeId = intent.getIntExtra("challenge_id", 0)
         challengeViewModel.loadChallenge(_challengeId)
 
-        _binding.challengePromptlist.adapter = promptListAdapter
-        _binding.challengePromptlist.layoutManager = GridLayoutManager(this, 3)
+        _binding.challengePromptList.adapter = promptListAdapter
+        _binding.challengePromptList.layoutManager = GridLayoutManager(this, 3)
 
-        challengeViewModel.currentChallenge.observe(this, Observer { challenge ->
+        challengeViewModel.currentChallenge.observe(this) { challenge ->
             currentChallenge = challenge
             _binding.challengeName.text = currentChallenge.title
             _binding.challengeDescription.text = currentChallenge.description
-        })
-        challengeViewModel.challengePrompts.observe(this, Observer { prompts ->
+        }
+        challengeViewModel.challengePrompts.observe(this) { prompts ->
             promptListAdapter.submitList(prompts)
-        })
-    }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        title = currentChallenge.title
-        return true
+        }
     }
 
     private fun onTogglePromptCompletion(promptId: Int)

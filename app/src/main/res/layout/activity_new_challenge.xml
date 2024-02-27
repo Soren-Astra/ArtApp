@@ -21,7 +21,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_endbuttons"
+        app:layout_constraintBottom_toTopOf="@+id/layout_end_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:hint="@string/hint_name"
+                android:hint="@string/challenge_new_name_hint"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:minHeight="@dimen/min_height"
@@ -64,11 +64,11 @@
                 android:id="@+id/text_prompts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prompts:"
+                android:text="@string/challenge_new_prompts"
                 android:textSize="16sp" />
 
             <LinearLayout
-                android:id="@+id/layout_addprompt"
+                android:id="@+id/layout_add_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
@@ -76,37 +76,38 @@
                 android:weightSum="8">
 
                 <EditText
-                    android:id="@+id/edit_addprompt"
+                    android:id="@+id/edit_add_prompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:ems="10"
-                    android:hint="Name"
+                    android:hint="@string/hint_name"
+                    android:importantForAutofill="no"
                     android:inputType="text"
                     android:minHeight="@dimen/min_height" />
 
                 <ImageButton
-                    android:id="@+id/button_addprompt"
+                    android:id="@+id/button_add_prompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/peach_yellow"
-                    android:contentDescription="Add prompt"
+                    android:contentDescription="@string/challenge_new_add_prompt"
                     android:minHeight="@dimen/min_height"
-                    android:src="@drawable/round_add_24_dark"/>
+                    android:src="@drawable/round_add_24_dark" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_promptadd"
+                android:id="@+id/recycler_prompt_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_promptadd" />
+                tools:listitem="@layout/item_prompt_add" />
 
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/layout_endbuttons"
+        android:id="@+id/layout_end_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -123,7 +124,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/button_cancel" />
+            android:text="@string/button_cancel"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/button_save"
@@ -132,7 +134,8 @@
             android:layout_weight="1"
             android:backgroundTint="@color/sandy_brown"
             android:text="@string/button_save"
-            android:textColor="@color/dark_purple" />
+            android:textColor="@color/dark_purple"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 

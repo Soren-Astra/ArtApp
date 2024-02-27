@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [Challenge::class, Prompt::class], version = 2, exportSchema = false)
-public abstract class ChallengeDatabase : RoomDatabase() {
+abstract class ChallengeDatabase : RoomDatabase() {
 
     abstract fun challengeDao() : ChallengeDao
     abstract fun promptDao() : PromptDao
@@ -35,7 +35,7 @@ public abstract class ChallengeDatabase : RoomDatabase() {
 
     private class ChallengeDatabaseCallback(
         private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
+        ) : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->

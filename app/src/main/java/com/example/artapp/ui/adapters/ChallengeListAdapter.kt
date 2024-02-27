@@ -28,13 +28,13 @@ class ChallengeListAdapter : ListAdapter<Challenge, ChallengeListAdapter.Challen
     }
 
     class ChallengeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val challengeTextView: TextView = itemView.findViewById(R.id.challengelist_name)
-        private val challengeCounterView: TextView = itemView.findViewById(R.id.challengelist_completion)
-        private val challengeBarView: ProgressBar = itemView.findViewById(R.id.challengelist_bar)
+        private val challengeTextView: TextView = itemView.findViewById(R.id.challenge_list_name)
+        private val challengeCounterView: TextView = itemView.findViewById(R.id.challenge_list_completion)
+        private val challengeBarView: ProgressBar = itemView.findViewById(R.id.challenge_list_bar)
 
         fun bind(challenge: Challenge) {
             challengeTextView.text = challenge.title
-            challengeCounterView.text = "${challenge.completedPromptCount}/${challenge.promptCount}"
+            challengeCounterView.text = String.format(itemView.context.getString(R.string.challenge_list_number_display), challenge.completedPromptCount, challenge.promptCount)
 
             if (challenge.promptCount == 0)
                 challengeBarView.progress = 100
@@ -50,7 +50,7 @@ class ChallengeListAdapter : ListAdapter<Challenge, ChallengeListAdapter.Challen
         companion object {
             fun create(parent: ViewGroup): ChallengeViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_challengelist, parent, false)
+                    .inflate(R.layout.item_challenge_list, parent, false)
                 return ChallengeViewHolder(view)
             }
         }

@@ -28,8 +28,8 @@ class PromptDisplayListAdapter(private val toggleCallback: (Int) -> Unit): ListA
     }
 
     class PromptDisplayViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val promptNameView: TextView = itemView.findViewById(R.id.promptlist_name)
-        private val promptCardView: CardView = itemView.findViewById(R.id.promptlist_card)
+        private val promptNameView: TextView = itemView.findViewById(R.id.prompt_list_name)
+        private val promptCardView: CardView = itemView.findViewById(R.id.prompt_list_card)
 
         fun bind(prompt: Prompt, toggleCallback: (Int) -> Unit) {
             promptNameView.text = prompt.title

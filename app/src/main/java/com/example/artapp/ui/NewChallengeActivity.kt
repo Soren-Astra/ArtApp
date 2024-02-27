@@ -30,8 +30,8 @@ class NewChallengeActivity : ComponentActivity() {
         setContentView(_binding.root)
         addPromptAdapter = PromptAddListAdapter()
 
-        _binding.recyclerPromptadd.adapter = addPromptAdapter
-        _binding.recyclerPromptadd.layoutManager = LinearLayoutManager(this)
+        _binding.recyclerPromptAdd.adapter = addPromptAdapter
+        _binding.recyclerPromptAdd.layoutManager = LinearLayoutManager(this)
         registerListeners()
 
     }
@@ -49,12 +49,12 @@ class NewChallengeActivity : ComponentActivity() {
         _binding.buttonCancel.setOnClickListener {
             finish()
         }
-        _binding.buttonAddprompt.setOnClickListener {
+        _binding.buttonAddPrompt.setOnClickListener {
             promptList = addPromptAdapter.currentList.toMutableList()
-            promptList.add(Prompt(_binding.editAddprompt.text.toString(), "", 0))
+            promptList.add(Prompt(_binding.editAddPrompt.text.toString(), "", 0))
             addPromptAdapter.submitList(promptList)
             addPromptAdapter.notifyItemInserted(promptList.size - 1)
-            _binding.editAddprompt.setText("")
+            _binding.editAddPrompt.setText("")
         }
     }
 }

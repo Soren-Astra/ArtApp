@@ -8,7 +8,7 @@
     android:backgroundTint="@color/peach_yellow">
 
     <ProgressBar
-        android:id="@+id/challengelist_bar"
+        android:id="@+id/challenge_list_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -24,19 +24,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/challengelist_name"
+        android:id="@+id/challenge_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/icon_brus_smallh"
+        app:drawableStartCompat="@drawable/icon_brush_small"
         android:padding="8dp"
-        android:text="@string/placeholder"
+        android:text="@string/placeholder_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/challengelist_completion"
+        android:id="@+id/challenge_list_completion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

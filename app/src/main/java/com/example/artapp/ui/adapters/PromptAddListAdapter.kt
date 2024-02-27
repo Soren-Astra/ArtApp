@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.R
 import com.example.artapp.entities.Prompt
 
-class PromptAddListAdapter(): ListAdapter<Prompt, PromptAddListAdapter.PromptAddViewHolder>(
+class PromptAddListAdapter: ListAdapter<Prompt, PromptAddListAdapter.PromptAddViewHolder>(
     PromptAddComparator()
 ) {
     override fun onBindViewHolder(holder: PromptAddViewHolder, position: Int) {
@@ -33,8 +33,8 @@ class PromptAddListAdapter(): ListAdapter<Prompt, PromptAddListAdapter.PromptAdd
     }
 
     class PromptAddViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val promptNameView: TextView = itemView.findViewById(R.id.promptadd_name)
-        val promptDeleteView: ImageButton = itemView.findViewById(R.id.promptadd_delete)
+        private val promptNameView: TextView = itemView.findViewById(R.id.prompt_add_name)
+        val promptDeleteView: ImageButton = itemView.findViewById(R.id.prompt_add_delete)
 
         fun bind(text: String) {
             promptNameView.text = text
@@ -43,7 +43,7 @@ class PromptAddListAdapter(): ListAdapter<Prompt, PromptAddListAdapter.PromptAdd
         companion object {
             fun create(parent: ViewGroup): PromptAddViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_promptadd, parent, false)
+                    .inflate(R.layout.item_prompt_add, parent, false)
                 return PromptAddViewHolder(view)
             }
         }

@@ -8,7 +8,6 @@ class ChallengeRepository(private val challengeDao: ChallengeDao) {
 
     val allChallenges: Flow<MutableList<Challenge>> = challengeDao.getAlphabetizedChallenges()
 
-    @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(challenge: Challenge): Int {
         return challengeDao.insert(challenge).toInt()

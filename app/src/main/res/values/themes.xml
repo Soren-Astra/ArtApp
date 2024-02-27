@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="ArtApp.Light" parent="@style/Theme.MaterialComponents.Light">
         <item name="actionBarTheme">@style/ArtApp.Light.Widget.ActionBar</item>
         <item name="actionBarStyle">@style/ArtApp.Light.Widget.ActionBar</item>
@@ -9,6 +8,7 @@
         <item name="android:fontFamily">@font/pixelfy_sans</item>
         <item name="colorPrimary">@color/burnt_orange</item>
     </style>
+
     <style name="ArtApp.Light.Widget.ActionBar" parent="@style/Widget.MaterialComponents.ActionBar.Solid">
         <item name="background">@color/peach_yellow</item>
         <item name="android:textColorPrimary">@color/burnt_orange</item>

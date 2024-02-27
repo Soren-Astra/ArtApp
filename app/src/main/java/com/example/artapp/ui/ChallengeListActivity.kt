@@ -13,16 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.artapp.ArtApplication
 import com.example.artapp.R
 import com.example.artapp.ui.adapters.ChallengeListAdapter
-import com.example.artapp.ui.fragments.ImportDialogFragment
 import com.example.artapp.viewmodel.ChallengeListViewModel
 import com.example.artapp.viewmodel.ChallengeListViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class ChallengeListActivity : AppCompatActivity() {
     private val challengeListViewModel: ChallengeListViewModel by viewModels {
         ChallengeListViewModelFactory((application as ArtApplication).challengeRepository, (application as ArtApplication).promptRepository)
     }
-    private lateinit var _dialog: ImportDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,17 +29,15 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         val adapter = ChallengeListAdapter()
-        _dialog = ImportDialogFragment(challengeListViewModel)
-        challengeListViewModel.loadChallenges()
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        challengeListViewModel.allChallenges.observe(this, Observer { challenges ->
-            challenges?.let { adapter.submitList(it)}
-        })
+        challengeListViewModel.allChallenges.observe(this) { challenges ->
+            challenges?.let { adapter.submitList(it) }
+        }
         fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewChallengeActivity::class.java)
+            val intent = Intent(this@ChallengeListActivity, NewChallengeActivity::class.java)
             startActivity(intent)
         }
     }
@@ -59,8 +55,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.import_json -> {
-                _dialog.show(supportFragmentManager, "IMPORT_DIALOG")
+            R.id.settings -> {
+                val intent = Intent(this@ChallengeListActivity, SettingsActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
